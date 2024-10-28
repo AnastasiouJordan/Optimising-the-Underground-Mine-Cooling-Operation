@@ -1,0 +1,12 @@
+function J = costEcon(tStart, MV_Econ, u, p, s, x, output)
+
+        time = tStart + (0 : 3600 : 3600*(12 - 1)); % Prediction horizon length
+
+        output.MV_Econ = MV_Econ;
+       
+        Econ_cost = p.Q_Weight_Econ*sum(MV_Econ(end).*p.pull_full_efficiency.*p.whole_week_tariff_vec_minutes(time/60));
+        %MV_cost = p.R_Weight_Econ*sum((MV_Econ(1:end, 2:end) - MV_Econ(1:end, 1:end-1)).^2)
+ 
+ 
+        J = Econ_cost;
+end 
